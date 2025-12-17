@@ -3,20 +3,12 @@ import cors from "cors";
 import dotenv from "dotenv";
 import User from "./models/User.js";
 import { connectDB } from "./config/db.js";
+import userRoutes from "./routes/userRoutes.js";
+
 
 dotenv.config();
 connectDB();
 
-
-const testUser = async () => {
-  await User.create({
-    name: "Test User",
-    email: "test@noteables.dev"
-  });
-  console.log("Test user created");
-};
-
-testUser();
 
 
 const app = express();
@@ -29,6 +21,7 @@ app.get("/", (req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
+app.use("/api/users", userRoutes);
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
