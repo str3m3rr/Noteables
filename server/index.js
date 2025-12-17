@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import User from "./models/User.js";
 import { connectDB } from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
+import noteRoutes from "./routes/noteRoutes.js";
+
 
 
 dotenv.config();
@@ -19,6 +21,7 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("Noteables API running");
 });
+app.use("/api/notes", noteRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.use("/api/users", userRoutes);
