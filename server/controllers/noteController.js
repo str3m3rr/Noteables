@@ -7,7 +7,9 @@ import Note from "../models/Note.js";
  */
 export const createNote = async (req, res) => {
   try {
-    const { title, subject, semester, uploadedBy } = req.body;
+    const { title, subject, semester } = req.body;
+    const uploadedBy = req.user.uid;
+
 
     // ---- Basic validation ----
     if (!title || !subject || !semester || !uploadedBy) {

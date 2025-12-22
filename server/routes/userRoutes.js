@@ -1,8 +1,10 @@
 import express from "express";
-import { createUser } from "../controllers/userController.js";
+import protect from "../middleware/auth.js";
+import { syncUser } from "../controllers/userController.js";
 
 const router = express.Router();
 
-router.post("/", createUser);
+// Sync Firebase user to MongoDB
+router.post("/sync", protect, syncUser);
 
 export default router;
